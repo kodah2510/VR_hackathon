@@ -5,17 +5,18 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     float x = 0.0f;
+    float y = 0.0f;
     float z = 0.0f;
-    float r = 0.41f;
+    float r = 10.0f;
 
+    float dx = 0.0f;
+    float dy = 0.0f;
+    float dz = 0.0f;
     public Vector2 centerPos;
 
-    public float speed = 0.08f;
-    public float stepSize = 0.02f;
-
     public float angle = 0.0f;
-    int count = 0;
-
+    float randY = 0.0f;
+    bool waiting = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,9 @@ public class EnemyMovement : MonoBehaviour
 
         x = transform.position.x;
         z = transform.position.z;
+        y = transform.position.y;
+
+        StartCoroutine(Stall());
     }
 
     // Update is called once per frame
@@ -32,20 +36,15 @@ public class EnemyMovement : MonoBehaviour
         if (angle >= 2 * Mathf.PI) {
             angle = 0.0f;
         }
-        x = centerPos.x + r * Mathf.Sin(angle);
-        z = centerPos.y + r * Mathf.Cos(angle);
-        if (count < 100) {
-            Debug.Log(x);
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.position = new Vector3(x, 0, z);
-        }
-        GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        cylinder.transform.position = new Vector3(x, 1, z);
 
-        count++;
-
-
-        transform.Translate(x, 0.0f, z);
+        dx = r * Mathf.Sin(angle);
+        dz = r * Mathf.Cos(angle);
+        randY = 0.8f * r * Mathf.PerlinNoise(dx, dz);
+        transform.position = Vector3.Lerp(transform.position , new Vector3(dx, randY, dz), Time.deltaTime);
     }
 
+    IEnumerator Stall()
+    {
+        yield return new WaitForSeconds(1);
+    }
 }
