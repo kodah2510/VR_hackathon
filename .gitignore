@@ -64,3 +64,19 @@ Assets/ProBuilder Data/Default Color Palette.asset.meta
 Assets/ProBuilder Data/Default Material Palette.asset.meta
 Assets/3D Objects/Enemy.prefab.meta
 Assets/ProBuilder Data.meta
+Assets/Materials.meta
+Assets/Materials/enemy_materials.meta
+Assets/Materials/enemy_materials/enemy_body.mat.meta
+Assets/Materials/enemy_materials/enemy_head.mat.meta
+Assets/Materials/enemy_materials/textures.meta
+Assets/Materials/enemy_materials/textures/Cube_enemy_body_BaseColor.png.meta
+Assets/Materials/enemy_materials/textures/Icosphere_enemy_head_BaseColor.png.meta
+Assets/Materials/enemy_materials/textures/Icosphere_enemy_head_Height.png.meta
+Assets/Materials/enemy_materials/textures/Icosphere_enemy_head_Normal.png.meta
+Assets/Materials/enemy_materials/textures/Icosphere_enemy_head_Roughness.png.meta
+Assets/Scenes/SampleScene.unity.meta
+Assets/Materials/enemy_materials/textures/Cube_enemy_body_Normal.png.meta
+Assets/Materials/enemy_materials/textures/Cube_enemy_body_Roughness.png.meta
+Assets/Materials/enemy_materials/textures/Icosphere_enemy_head_Metallic.png.meta
+Assets/Materials/enemy_materials/textures/Cube_enemy_body_Height.png.meta
+Assets/Materials/enemy_materials/textures/Cube_enemy_body_Metallic.png.meta
