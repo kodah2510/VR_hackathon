@@ -26,7 +26,7 @@ public class RubishGenerator : MonoBehaviour
             randX = Random.Range(minX, maxX);
             randZ = Random.Range(minZ, maxZ);
             size = Mathf.Clamp(Random.value, 0.3f, 1.0f);
-            rubishArr[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            rubishArr[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             rubishArr[i].transform.position = new Vector3(randX, 3.0f, randZ);
             rubishArr[i].transform.localScale = new Vector3(size, size, size);
             Rigidbody rb = rubishArr[i].AddComponent<Rigidbody>() as Rigidbody;

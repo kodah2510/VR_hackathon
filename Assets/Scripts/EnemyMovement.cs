@@ -17,14 +17,37 @@ public class EnemyMovement : MonoBehaviour
     public float angle = 0.0f;
     float randY = 0.0f;
     bool waiting = false;
+
+    
+    float minX = -10.0f;
+    float maxX = 10.0f;
+
+    float minZ = -10.0f;
+    float maxZ = 10.0f;
+
+    GameObject[] rubishArr;
+    const int MAX_RUBISHS = 100;
+    int rubishIndex = 0;
+    float rubishSize = 0.3f;
+
+    int rb_step = 5;
+    int count = 0;
+
+    float randR = 5f;
+    float randL = 0f;
+
+    
     // Start is called before the first frame update
     void Start()
     {
+        Physics.gravity = new Vector3(0, -9.8f, 0);
         centerPos = new Vector2(0.0f, 0.0f);
 
         x = transform.position.x;
         z = transform.position.z;
         y = transform.position.y;
+
+        rubishArr = new GameObject[MAX_RUBISHS];
 
         StartCoroutine(Stall());
     }
@@ -41,6 +64,40 @@ public class EnemyMovement : MonoBehaviour
         dz = r * Mathf.Cos(angle);
         randY = 0.8f * r * Mathf.PerlinNoise(dx, dz);
         transform.position = Vector3.Lerp(transform.position , new Vector3(dx, randY, dz), Time.deltaTime);
+
+        if (rubishIndex < MAX_RUBISHS && count% rb_step == 0)
+        {
+
+            RubhishGenerate(new Vector3(transform.position.x, transform.position.y, transform.position.z));
+        }
+
+        
+    }
+
+    Vector2 randomPosition()
+    {
+        Vector2 res;
+        res.x = Random.Range(randL, randR);
+        res.y = Random.Range(randL, randR);
+
+        return res;
+    }
+
+    void RubhishGenerate(Vector3 position)
+    {
+        Vector2 randomPos = randomPosition(); 
+        rubishArr[rubishIndex] = GameObject.CreatePrimitive(PrimitiveType.Cube);
+         
+        
+        rubishArr[rubishIndex].transform.position = new Vector3(position.x + randomPos.x, 2.0f, position.z + randomPos.y);
+        rubishArr[rubishIndex].transform.localScale = new Vector3(rubishSize, rubishSize, rubishSize);
+      
+        Rigidbody rb = rubishArr[rubishIndex].AddComponent<Rigidbody>() as Rigidbody;
+        rubishIndex++;
+
+        rb.mass = rubishSize * 5.0f;
+        rb.useGravity = true;
+        
     }
 
     IEnumerator Stall()

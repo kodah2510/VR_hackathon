@@ -6,6 +6,7 @@ public class FPSCamera : MonoBehaviour
 {
     public float turnSpeed = 50f;
 
+    /*
     void MouseAiming()
     {
         var rot = new Vector3(0f, 0f, 0f);
@@ -33,7 +34,7 @@ public class FPSCamera : MonoBehaviour
 
         transform.Rotate(rot, turnSpeed * Time.deltaTime);
     }
-
+    */
     void KeyboardMovement()
     {
         var sensitivity = 0.01f;
@@ -61,7 +62,7 @@ public class FPSCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MouseAiming();
+        //MouseAiming();
         KeyboardMovement();
     }
 }
